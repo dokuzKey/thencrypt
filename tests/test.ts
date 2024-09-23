@@ -1,17 +1,4 @@
-# thencrypt
-
-An easy-to-use encryption module based on Crypto.
-
-## Installation
-
-```bash
-npm install thencrypt
-```
-
-## Usage
-
-```typescript
-import thencrypt from 'thencrypt';
+import thencrypt from '../index';
 
 interface Encryptor {
     encrypt(text: string): Promise<string>;
@@ -35,7 +22,3 @@ async function dokuzKey(): Promise<void> {
 }
 
 dokuzKey();
-```
-
-## License
-The thencrypt package is licensed under the Apache 2.0 license. More can be found in [LICENSE](LICENSE)
