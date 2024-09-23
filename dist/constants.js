@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HMAC_KEY = exports.PEPPER = exports.HASH_SEED = exports.PBKDF2_ITERATIONS = exports.TAG_SIZE = exports.KEY_SIZE = exports.IV_SIZE = exports.SALT_SIZE = void 0;
+exports.SALT_SIZE = 32;
+exports.IV_SIZE = 16;
+exports.KEY_SIZE = 32;
+exports.TAG_SIZE = 16;
+exports.PBKDF2_ITERATIONS = 310000;
+exports.HASH_SEED = 0xF1AC;
+exports.PEPPER = 'veryLongAndReallyComplexPepperValue123456!@#$%^&*()_+[]{}|;:,.<>?';
+exports.HMAC_KEY = 'veryLongAndReallyComplexHMACKeyValue123456!@#$%^&*()_+[]{}|;:,.<>?';

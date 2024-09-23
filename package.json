@@ -1,9 +1,10 @@
 {
   "name": "thencrypt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An easy-to-use encryption module based on Crypto.",
-  "main": "index.ts",
-  "scripts": {
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+    "scripts": {
     "build": "tsc"
   },
   "keywords": [
@@ -21,7 +22,7 @@
     "xxhash": "^0.3.0"
   },
   "devDependencies": {
-    "@types/node": "^22.5.5",
+    "@types/node": "^22.6.0",
     "typescript": "^5.6.2"
   },
   "repository": {
