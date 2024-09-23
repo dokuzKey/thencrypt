@@ -1,6 +1,6 @@
 {
   "name": "thencrypt",
-  "version": "0.9.4",
+  "version": "1.0.0",
   "description": "An easy-to-use encryption module based on Crypto.",
   "main": "index.ts",
   "scripts": {
