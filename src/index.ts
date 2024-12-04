@@ -42,8 +42,8 @@ class Thencrypt {
             const decrypted = decrypt(encrypted, key, iv, tag);
             const decompressed = await decompress(decrypted);
             return decompressed.toString('utf8');
-        } catch (error) {
-            throw new Error('Decryption failed');
+        } catch (error: any) {
+            throw new Error(`Decryption failed: ${error.message}`);
         }
     };
 }
