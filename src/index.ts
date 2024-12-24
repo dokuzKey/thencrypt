@@ -1,5 +1,4 @@
 import crypto from 'crypto';
-import { compress, decompress } from './utils/compression';
 import { deriveKey } from './utils/keyDerivation';
 import { encrypt, decrypt } from './utils/encryption';
 import { hash } from './utils/hashing';
@@ -17,10 +16,9 @@ class Thencrypt {
 
     async encrypt(plaintext: string): Promise<string> {
         try {
-            const compressed = await compress(plaintext);
             const salt = crypto.randomBytes(SALT_SIZE);
             const key = await deriveKey(this.secretKey, salt);
-            const { iv, encrypted, tag } = encrypt(compressed, key);
+            const { iv, encrypted, tag } = encrypt(plaintext, key);
             const dataToHash = Buffer.concat([salt, iv, encrypted, tag]);
             const dataHash = hash(dataToHash);
             const result = Buffer.concat([salt, iv, encrypted, tag, dataHash]);
@@ -40,8 +38,7 @@ class Thencrypt {
     
             const key = await deriveKey(this.secretKey, salt);
             const decrypted = decrypt(encrypted, key, iv, tag);
-            const decompressed = await decompress(decrypted);
-            return decompressed.toString('utf8');
+            return decrypted.toString('utf8');
         } catch (error: any) {
             throw new Error(`Decryption failed: ${error.message}`);
         }

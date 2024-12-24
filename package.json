@@ -1,10 +1,10 @@
 {
   "name": "thencrypt",
-  "version": "1.0.2",
+  "version": "2.0.1",
   "description": "An easy-to-use encryption module based on Crypto.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-    "scripts": {
+  "scripts": {
     "build": "tsc"
   },
   "keywords": [
@@ -15,11 +15,7 @@
   "author": "9Key Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "crypto-js": "^4.2.0",
-    "lz4": "^0.6.5",
-    "node-forge": "^1.3.1",
-    "xxhash": "^0.3.0"
+    "bcrypt": "^5.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.6.0",
