@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const crypto_1 = __importDefault(require("crypto"));
-const compression_1 = require("./utils/compression");
 const keyDerivation_1 = require("./utils/keyDerivation");
 const encryption_1 = require("./utils/encryption");
 const hashing_1 = require("./utils/hashing");
@@ -28,10 +27,9 @@ class Thencrypt {
     encrypt(plaintext) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const compressed = yield (0, compression_1.compress)(plaintext);
                 const salt = crypto_1.default.randomBytes(constants_1.SALT_SIZE);
                 const key = yield (0, keyDerivation_1.deriveKey)(this.secretKey, salt);
-                const { iv, encrypted, tag } = (0, encryption_1.encrypt)(compressed, key);
+                const { iv, encrypted, tag } = (0, encryption_1.encrypt)(plaintext, key);
                 const dataToHash = Buffer.concat([salt, iv, encrypted, tag]);
                 const dataHash = (0, hashing_1.hash)(dataToHash);
                 const result = Buffer.concat([salt, iv, encrypted, tag, dataHash]);
@@ -52,11 +50,10 @@ class Thencrypt {
                 const tag = data.subarray(-constants_1.TAG_SIZE - 64, -64);
                 const key = yield (0, keyDerivation_1.deriveKey)(this.secretKey, salt);
                 const decrypted = (0, encryption_1.decrypt)(encrypted, key, iv, tag);
-                const decompressed = yield (0, compression_1.decompress)(decrypted);
-                return decompressed.toString('utf8');
+                return decrypted.toString('utf8');
             }
             catch (error) {
-                throw new Error('Decryption failed');
+                throw new Error(`Decryption failed: ${error.message}`);
             }
         });
     }
